@@ -1,0 +1,47 @@
+# Lint — fast feedback on style and correctness for every push/PR.
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: python -m pip install "ruff>=0.6"
+
+      - name: Ruff lint
+        run: python -m ruff check --output-format=github backend/app scripts tests
+
+      - name: Ruff format check
+        run: python -m ruff format --check backend/app scripts tests
+
+  mypy:
+    # Practical, non-blocking type checking of the core application modules.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements*.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r backend/requirements.txt -r backend/requirements-dev.txt
+
+      - name: MyPy
+        run: python -m mypy || true
