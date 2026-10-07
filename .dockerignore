@@ -1,0 +1,41 @@
+# --- VCS and community files ---
+.git
+.github
+.gitattributes
+.gitignore
+
+# --- Environment files (secrets are injected at run time) ---
+.env
+.env.*
+!.env.example
+!.env.development.example
+!.env.production.example
+
+# --- Python caches / virtualenvs ---
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.venv
+venv
+*.egg-info
+
+# --- Local data and logs ---
+qdrant_storage
+logs
+*.log
+docs/screenshots
+exports
+
+# --- Docs not needed inside images ---
+docs
+README.md
+LICENSE
+CHANGELOG.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# --- Tests are not needed inside runtime images ---
+tests

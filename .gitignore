@@ -1,0 +1,47 @@
+# --- Environment files (never commit secrets) ---
+.env
+.env.*
+!.env.example
+!.env.development.example
+!.env.production.example
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# --- Caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage/
+htmlcov/
+.hypothesis/
+
+# --- Local services / data ---
+qdrant_storage/
+data/private/
+logs/
+*.log
+
+# --- Locally generated screenshots / exports ---
+docs/screenshots/*.png
+docs/screenshots/*.gif
+!docs/screenshots/.gitkeep
+exports/
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Node (frontend tooling, if added later) ---
+node_modules/
