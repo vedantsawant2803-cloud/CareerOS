@@ -1,0 +1,3 @@
+# CareerOS frontend — runtime dependencies
+streamlit>=1.36,<2.0
+httpx>=0.27,<1.0
