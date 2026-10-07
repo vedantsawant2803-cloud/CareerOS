@@ -1,0 +1,76 @@
+# ============================================================================
+# CareerOS — production-style local stack.
+# Services are reached by Docker service name (qdrant / backend / frontend),
+# never by localhost, so container-to-container traffic works out of the box.
+#
+#   docker compose up --build
+# ============================================================================
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    container_name: careeros-qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c ':> /dev/tcp/127.0.0.1/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    container_name: careeros-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      # Optional: fresh clones work without a .env (compose defaults apply).
+      - path: .env
+        required: false
+    environment:
+      # Force the Docker-internal hostname regardless of what is in .env.
+      QDRANT_URL: http://qdrant:6333
+    volumes:
+      # Mount project data and scripts so documents can be ingested inside
+      # the container (`docker compose exec backend python scripts/seed_data.py`).
+      - ./data:/app/data
+      - ./scripts:/app/scripts
+    depends_on:
+      qdrant:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    # Lets the container reach an LLM server running on the host machine
+    # (e.g. Ollama at http://host.docker.internal:11434/v1).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: careeros-frontend
+    ports:
+      - "8501:8501"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # Docker service name — never localhost.
+      BACKEND_URL: http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
