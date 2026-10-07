@@ -1,0 +1,199 @@
+{
+  "version": "1.0.0",
+  "description": "CareerOS evaluation set. Each question lists the facts (expected_points) and the source files (expected_sources) that a correct, grounded answer should reflect. Metrics computed by scripts/run_eval.py are heuristic unless an LLM judge is configured.",
+  "questions": [
+    {
+      "id": "q001",
+      "question": "Which projects demonstrate backend engineering?",
+      "category": "skills",
+      "expected_points": ["Node.js", "Express", "REST APIs"],
+      "expected_sources": ["devlens.md", "enviromonitor.md"]
+    },
+    {
+      "id": "q002",
+      "question": "What technologies has Vedant worked with?",
+      "category": "skills",
+      "expected_points": ["React", "React Native", "Node.js", "Express.js", "MongoDB", "MySQL", "Python", "Docker"],
+      "expected_sources": ["vedant_resume.md"]
+    },
+    {
+      "id": "q003",
+      "question": "Which projects involve AI?",
+      "category": "projects",
+      "expected_points": ["DevLens", "AI-powered backend", "code-quality scoring", "skill-gap analysis"],
+      "expected_sources": ["devlens.md"]
+    },
+    {
+      "id": "q004",
+      "question": "What is DevLens?",
+      "category": "projects",
+      "expected_points": ["code review", "skill gap", "GitHub repositories", "React", "Node.js", "Express"],
+      "expected_sources": ["devlens.md"]
+    },
+    {
+      "id": "q005",
+      "question": "What engineering practices were used in EnviroMonitor?",
+      "category": "projects",
+      "expected_points": ["linting", "smoke tests", "health-check endpoint", "database migration"],
+      "expected_sources": ["enviromonitor.md"]
+    },
+    {
+      "id": "q006",
+      "question": "What security-focused work has Vedant done?",
+      "category": "security",
+      "expected_points": ["OTP authentication", "Telegram alerts", "loophole coverage", "authentication safeguards"],
+      "expected_sources": ["apartment_visitor_security.md", "enviromonitor.md"]
+    },
+    {
+      "id": "q007",
+      "question": "What databases has Vedant used?",
+      "category": "skills",
+      "expected_points": ["MongoDB", "MySQL", "SQL", "database migrations"],
+      "expected_sources": ["vedant_resume.md"]
+    },
+    {
+      "id": "q008",
+      "question": "What leadership experience does Vedant have?",
+      "category": "experience",
+      "expected_points": ["Team Lead", "Google Developer Group Hackathon", "2025"],
+      "expected_sources": ["gdg_hackathon.md"]
+    },
+    {
+      "id": "q009",
+      "question": "What happened at the GDG Hackathon?",
+      "category": "hackathon",
+      "expected_points": ["Team Lead", "React Native", "Node.js", "MongoDB", "demo-ready"],
+      "expected_sources": ["gdg_hackathon.md"]
+    },
+    {
+      "id": "q010",
+      "question": "What recognition did Vedant receive at the SIES Hackathon?",
+      "category": "hackathon",
+      "expected_points": ["finalist", "400 teams", "robust security", "clear documentation"],
+      "expected_sources": ["sies_hackathon.md"]
+    },
+    {
+      "id": "q011",
+      "question": "Which project best demonstrates developer tooling?",
+      "category": "projects",
+      "expected_points": ["DevLens", "shareable reports", "analysis history", "rate limiting"],
+      "expected_sources": ["devlens.md"]
+    },
+    {
+      "id": "q012",
+      "question": "Which projects are relevant to a backend internship?",
+      "category": "projects",
+      "expected_points": ["EnviroMonitor", "DevLens", "REST APIs", "Express"],
+      "expected_sources": ["enviromonitor.md", "devlens.md"]
+    },
+    {
+      "id": "q013",
+      "question": "Summarize Vedant's profile for a software engineering role.",
+      "category": "profile",
+      "expected_points": ["Computer Engineering", "2028", "full-stack", "backend APIs", "security-focused"],
+      "expected_sources": ["vedant_resume.md"]
+    },
+    {
+      "id": "q014",
+      "question": "Generate interview questions about DevLens.",
+      "category": "interview",
+      "expected_points": ["rate limiting", "GitHub REST API", "client-server architecture", "skill-gap analysis"],
+      "expected_sources": ["devlens.md"],
+      "mode": "interview_prep"
+    },
+    {
+      "id": "q015",
+      "question": "Which job requirements are verified by Vedant's experience?",
+      "category": "tailoring",
+      "expected_points": ["REST APIs", "Node.js", "React", "MySQL"],
+      "expected_sources": ["vedant_resume.md", "enviromonitor.md"],
+      "mode": "skill_gap",
+      "job_description": "Backend engineering intern. Requirements: build REST APIs with Node.js and Express, work with SQL databases such as MySQL, integrate third-party APIs, write tests, and collaborate in a team using Git and GitHub."
+    },
+    {
+      "id": "q016",
+      "question": "Which requirements are not currently verified?",
+      "category": "tailoring",
+      "expected_points": ["not verified", "indexed profile"],
+      "expected_sources": ["vedant_resume.md"],
+      "mode": "skill_gap",
+      "job_description": "Senior backend engineer. Requirements: 5+ years of production Go experience, Kubernetes operations at scale, on-call ownership of distributed systems, and published research in distributed consensus."
+    },
+    {
+      "id": "q017",
+      "question": "Generate accurate resume bullets for an AI engineering internship.",
+      "category": "tailoring",
+      "expected_points": ["DevLens", "AI-powered", "skill-gap", "shareable reports"],
+      "expected_sources": ["devlens.md"],
+      "mode": "resume_bullets",
+      "job_description": "AI engineering internship. Requirements: build AI-powered developer tools, integrate LLM-based analysis into workflows, and communicate results through clear reports."
+    },
+    {
+      "id": "q018",
+      "question": "What engineering strengths does Vedant list?",
+      "category": "profile",
+      "expected_points": ["debugging", "reproducible development workflows", "rate limiting", "dependency management"],
+      "expected_sources": ["vedant_resume.md"]
+    },
+    {
+      "id": "q019",
+      "question": "What is currently described as learning rather than verified experience?",
+      "category": "profile",
+      "expected_points": ["Data Structures and Algorithms", "currently learning", "problem solving"],
+      "expected_sources": ["vedant_resume.md"]
+    },
+    {
+      "id": "q020",
+      "question": "What does EnviroMonitor do with environmental readings?",
+      "category": "projects",
+      "expected_points": ["submission", "computes AQI", "compliant reports", "MySQL"],
+      "expected_sources": ["enviromonitor.md"]
+    },
+    {
+      "id": "q021",
+      "question": "How does the Apartment Visitor Security System alert residents?",
+      "category": "security",
+      "expected_points": ["OTP", "Telegram alerts", "visitor-entry"],
+      "expected_sources": ["apartment_visitor_security.md"]
+    },
+    {
+      "id": "q022",
+      "question": "Which tools does Vedant use in his development workflow?",
+      "category": "skills",
+      "expected_points": ["Git", "GitHub", "Docker", "Postman", "Visual Studio Code"],
+      "expected_sources": ["vedant_resume.md"]
+    },
+    {
+      "id": "q023",
+      "question": "What did Vedant implement at the SIES Hackathon?",
+      "category": "hackathon",
+      "expected_points": ["civic-tech prototype", "backend APIs", "mobile frontend"],
+      "expected_sources": ["sies_hackathon.md"]
+    },
+    {
+      "id": "q024",
+      "question": "What rate limiting and reliability work is described in DevLens?",
+      "category": "security",
+      "expected_points": ["rate limiting", "responsible use of external services", "structured API workflows"],
+      "expected_sources": ["devlens.md"],
+      "mode": "qa"
+    },
+    {
+      "id": "q025",
+      "question": "Summarize EnviroMonitor as a project.",
+      "category": "projects",
+      "expected_points": ["Node.js", "Express", "MySQL", "health-check endpoint"],
+      "expected_sources": ["enviromonitor.md"],
+      "mode": "project_summary"
+    },
+    {
+      "id": "q026",
+      "question": "Tailor Vedant's profile for this backend role.",
+      "category": "tailoring",
+      "expected_points": ["EnviroMonitor", "REST APIs", "MySQL", "Docker"],
+      "expected_sources": ["vedant_resume.md", "enviromonitor.md"],
+      "mode": "tailor_resume",
+      "job_description": "Backend developer intern. Stack: Node.js, Express, MySQL, REST APIs. Nice to have: Docker, testing experience, Git-based collaboration, and familiarity with rate limiting and API security practices."
+    }
+  ]
+}
