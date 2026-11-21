@@ -207,13 +207,15 @@ class QdrantStore:
             raise QdrantStoreError(f"Could not count points: {exc}") from exc
 
 
-def index_point_id(chunk_id: str) -> str:
-    """Convert a hex chunk id into a UUID-derived integer Qdrant point id.
+def index_point_id(chunk_id: str) -> int:
+    """Convert a hex chunk id into an integer Qdrant point id.
 
-    Qdrant accepts unsigned integers or UUIDs as point ids. Mapping the
-    deterministic chunk id through SHA-256 keeps upserts idempotent.
+    Qdrant accepts unsigned integers or UUIDs as point ids — a decimal
+    *string* is rejected with HTTP 400, so this must return a real int.
+    Mapping the deterministic chunk id through SHA-256 keeps upserts
+    idempotent and the 2**63-1 modulus keeps the value in Qdrant's range.
     """
     import hashlib
 
     digest = hashlib.sha256(chunk_id.encode("utf-8")).hexdigest()
-    return str(int(digest[:32], 16) % (2**63 - 1))
+    return int(digest[:32], 16) % (2**63 - 1)

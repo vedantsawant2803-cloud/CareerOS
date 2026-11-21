@@ -44,7 +44,8 @@ def test_index_point_id_is_deterministic_integer():
     first = index_point_id("chunk-a")
     second = index_point_id("chunk-a")
     assert first == second
-    assert first.isdigit()
+    assert isinstance(first, int) and not isinstance(first, bool)
+    assert 0 <= first <= 2**63 - 1
     assert index_point_id("chunk-b") != first
 
 
